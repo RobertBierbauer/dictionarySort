@@ -1,0 +1,26 @@
+reader
+	file -> stream of characters
+
+tokenizer
+	stream of characters -> list of words
+
+dictionary builder
+	list of words -> tree, list of tree element pointers
+
+compressor
+	tree, element list -> bitstream
+
+decompressor
+	bitstream -> tree, element list
+
+
+
+
+iterator for wordlist
+iterator for text
+iterator for word frequency
+iterator for compressed text
+iterator for decompressed text
+
+tree file creator, tree file reader
+
