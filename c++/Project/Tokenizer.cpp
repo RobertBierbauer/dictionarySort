@@ -18,7 +18,7 @@ void Tokenizer::tokenize () {
 	char c;
 	while (stream.get (c)) {
 		if (is_whitespace (c)) {
-			tokens.push_back (current);
+			if (current.length() > 0) tokens.push_back (current);
 			current = "";
 			tokens.push_back (std::string (1, c));
 		} else {
