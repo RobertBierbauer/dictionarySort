@@ -1,4 +1,4 @@
 all: compile
 
-compile: main.cpp Tokenizer.cpp
+compile: Tokenizer.cpp main.cpp
 	g++ *.cpp
