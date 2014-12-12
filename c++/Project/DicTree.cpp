@@ -18,11 +18,13 @@
      }
      
      void DicTree::iterate(){
+       std::cout << "(" ;
          for (std::map<char,DicTree>::iterator it=nodes.begin(); it!=nodes.end(); ++it){
+           //End of a word
             if(it->second.wordPosition.size()>0){
               std::cout << it->first << " => "  ;
-              for (std::vector
-	 <int>::iterator inte=it->second.wordPosition.begin(); inte!=it->second.wordPosition.end(); ++inte){
+              // word poss
+              for (std::vector<int>::iterator inte=it->second.wordPosition.begin(); inte!=it->second.wordPosition.end(); ++inte){
 	 std::cout << *inte<<",";
               }
                std::cout<<std::endl ;
@@ -31,6 +33,7 @@
             }
               it->second.iterate();
          }
+          std::cout << ")" ;
      }   
      
      
