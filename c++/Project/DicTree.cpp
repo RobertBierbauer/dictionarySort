@@ -10,7 +10,6 @@
      DicTree::DicTree(char _letter): letter (_letter){}
      
      void DicTree::insert(std::string word, int pos){
-//            std::cout<<word<< std::endl;
            if(word.length()>0)
             nodes[word[0]].insert(word.substr(1),pos);
            else
@@ -18,11 +17,13 @@
      }
      
      void DicTree::iterate(){
+       std::cout << "(" ;
          for (std::map<char,DicTree>::iterator it=nodes.begin(); it!=nodes.end(); ++it){
+           //End of a word
             if(it->second.wordPosition.size()>0){
               std::cout << it->first << " => "  ;
-              for (std::vector
-	 <int>::iterator inte=it->second.wordPosition.begin(); inte!=it->second.wordPosition.end(); ++inte){
+              // word poss
+              for (std::vector<int>::iterator inte=it->second.wordPosition.begin(); inte!=it->second.wordPosition.end(); ++inte){
 	 std::cout << *inte<<",";
               }
                std::cout<<std::endl ;
@@ -31,6 +32,7 @@
             }
               it->second.iterate();
          }
+          std::cout << ")" ;
      }   
      
      

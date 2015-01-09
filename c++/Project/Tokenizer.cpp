@@ -17,6 +17,7 @@ void Tokenizer::tokenize () {
 	
 	char c;
 	while (stream.get (c)) {
+		//if([c]{return !((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))}){
 		if (is_whitespace (c)) {
 			if (current.length() > 0) tokens.push_back (current);
 			current = "";
