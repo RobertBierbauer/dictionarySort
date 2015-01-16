@@ -74,6 +74,40 @@
 	     std::cout<< *w<<std::endl;
               }*/
           return wordList;
-     }   
+     }  
+     
+     void DicTree::createOutput(std::string *output, bool first, int scope){
+    for(std::map<char,DicTree>::iterator it=nodes.begin(); it!=nodes.end(); ++it){
+        if(it->first != ' '){
+            if(nodes.size()>1&&!first){
+                for(int i = 0; i<scope+1; i++){
+                    *output += '_';
+                }
+            }
+            *output  +=it->first;
+            if(it->second.wordPosition.size() != 0){
+                *output += '{';
+                for(std::vector<int>::iterator itW=it->second.wordPosition.begin(); itW != it->second.wordPosition.end(); ++itW){
+                    *output += std::to_string(*itW) + ",";
+                }
+                output->at(output->length()-1) = '}';
+            }
+            it->second.createOutput(output, false, nodes.size()>1&&!first?scope+1:scope);
+            if(first){
+                *output+=' ';
+            }
+        }
+    }
+
+}
+
+void DicTree::getWords(int tab, std::string s, std::map<std::string, std::vector<int>> *wordMap){
+    for (std::map<char,DicTree>::iterator it=nodes.begin(); it!=nodes.end(); ++it){
+        if(it->second.wordPosition.size() != 0){
+            wordMap->insert(std::pair<std::string,std::vector<int>>(s+it->first, it->second.wordPosition));
+        }
+        it->second.getWords(tab+1, s+it->first, wordMap);
+    }
+}
      
      
